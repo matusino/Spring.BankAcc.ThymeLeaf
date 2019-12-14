@@ -1,38 +1,70 @@
 package com.sykora.Spring.BankAcc.ThymeLeaf.domain;
 
-import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 
-//import javax.persistence.Entity;
-//import javax.persistence.GeneratedValue;
-//import javax.persistence.GenerationType;
-//import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
-
+@Entity
 public class Person {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotEmpty
     private String firstName;
     @NotEmpty
     private String lastName;
     @NotEmpty
-    private String Snn;
+    private String snn;
     @Nullable
     private String phoneNumber;
     @Nullable
     private String age;
 
-    public Person(Long id, @NotEmpty String firstName, @NotEmpty String lastName, @NotEmpty String snn, @Nullable String phoneNumber, @Nullable String age) {
+
+    private String accountType;
+
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Account> accounts = new ArrayList<>();
+
+    public List<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(List<Account> accounts) {
+        this.accounts = accounts;
+    }
+
+    public String getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
+    }
+
+    public Person() {
+    }
+
+    public Person(Long id, @NotEmpty String firstName, @NotEmpty String lastName, @NotEmpty String snn, @Nullable String phoneNumber, @Nullable String age, String accountType) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        Snn = snn;
+        this.snn = snn;
         this.phoneNumber = phoneNumber;
         this.age = age;
+        this.accountType =accountType;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -52,11 +84,11 @@ public class Person {
     }
 
     public String getSnn() {
-        return Snn;
+        return snn;
     }
 
     public void setSnn(String snn) {
-        Snn = snn;
+        this.snn = snn;
     }
 
     @Nullable
@@ -85,13 +117,13 @@ public class Person {
         return Objects.equals(id, person.id) &&
                 Objects.equals(firstName, person.firstName) &&
                 Objects.equals(lastName, person.lastName) &&
-                Objects.equals(Snn, person.Snn) &&
+                Objects.equals(snn, person.snn) &&
                 Objects.equals(phoneNumber, person.phoneNumber) &&
                 Objects.equals(age, person.age);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, Snn, phoneNumber, age);
+        return Objects.hash(id, firstName, lastName, snn, phoneNumber, age);
     }
 }

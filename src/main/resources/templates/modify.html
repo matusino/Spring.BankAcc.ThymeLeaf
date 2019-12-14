@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Modify</title>
+</head>
+<body>
+<div class="container">
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">Modify</div>
+            <div class="panel-body" style="padding-left: 5px;">
+                Name: <b th:text="${person.firstName}"></b> <b th:text="${person.lastName}"></b><br/>
+                Snn: <span th:text="${person.snn}"></span><br/>
+                Phone Number: <span th:text="${person.phoneNumber}"></span><br/>
+                Age: <span th:text="${person.age}"></span><br/>
+                Balance: <span th:text="${account.balance}"></span>
+                <button th:text="DEPOSIT" class="btn btn-success">DEPOSIT</button>
+                <br/>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
