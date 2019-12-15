@@ -9,51 +9,39 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <title>MODIFY</title>
+    <title>WITHDRAWN</title>
 </head>
 <body>
 <div class="container">
-    <h1 class="center">UPDATE USER ACCOUNT</h1>
-    <form class="form-horizontal" th:action="@{/modifycomplete/{userId}(userId=${person.id})}" method="post">
+    <h1 class="center">WITHDRAWN</h1>
+    <form class="form-horizontal" th:action="@{/dowithdrawn/{userId}(userId=${account.id})}" method="post">
         <div class="form-group">
-            <label class="col-sm-2 control-label">First Name:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" th:value="${person.firstName}" name="firstName">
+            <div class="row">
+            <label class="col-sm-2 control-label">Account Number:</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" th:value="${account.accountNumber}" name="accountNumber" readonly>
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Last Name:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" th:value="${person.lastName}" name="lastName">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Snn:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" th:value="${person.snn}" name="snn">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Phone number:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" th:value="${person.phoneNumber}" name="phoneNumber">
-            </div>
         </div>
         <div class="form-group">
             <div class="row">
-            <label class="col-sm-2 control-label">Current balance:</label>
-            <div class="col-sm-2">
-                <input type="text" class="form-control" th:value="${account.balance}" name="balance" readonly>
-            </div>
-            <div class="offset-md-3">
-                <a th:href="@{/withdrawn/{userId}(userId=${person.id})}" class="btn btn-secondary">WITHDRAWN</a>
-                <a th:href="@{/withdrawn/{userId}(userId=${person.id})}" class="btn btn-secondary">DEPOSIT</a>
+            <label class="col-sm-2 control-label">CURRENT BALANCE</label>
+            <div class="col-sm-5">
+                <p class="form-control" th:text="${account.balance}"></p>
             </div>
         </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <label class="col-sm-2">AMOUNT</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" th:value="${account.balance}" name="balance">
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="offset-md-4">
-                <button type="submit" class="btn btn-success">SUBMIT</button>
+                <button type="submit" class="btn btn-success">WITHDRAWN</button>
             </div>
             <a th:href="@{/listofpersons}" class="btn btn-danger">CANCEL</a>
         </div>

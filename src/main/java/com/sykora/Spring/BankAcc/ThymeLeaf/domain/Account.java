@@ -28,6 +28,14 @@ public class Account {
         this.person = person;
     }
 
+    public Long getId() {
+        return Id;
+    }
+
+    public void setId(Long id) {
+        Id = id;
+    }
+
     public Account(Long id, @NotEmpty String accountNumber, @NotEmpty Double balance) {
         Id = id;
         this.accountNumber = accountNumber;

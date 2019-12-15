@@ -54,6 +54,7 @@ public class UserRegistrationController {
         if(account instanceof CheckingAccount){
             ((CheckingAccount) account).setCardNumber(checkingService.createCardNumber());
             ((CheckingAccount) account).setPin(checkingService.randomPin());
+            account.setBalance(1111D);
             account.setPerson(person);
             accountRepository.save(account);
         }else if(account instanceof SavingsAccount){
@@ -75,6 +76,26 @@ public class UserRegistrationController {
 
         return "modifyperson";
     }
+
+    @RequestMapping(value = "/dowithdrawn/{userId}", method = RequestMethod.POST)
+    public String withdrawn(@PathVariable Long userId, @ModelAttribute Account account){
+        Account updatedAccount = accountRepository.findById(userId).orElse(null);
+
+        updatedAccount.setBalance(account.getBalance());
+        accountRepository.save(updatedAccount);
+
+        return "redirect:/listofpersons";
+    }
+
+    @RequestMapping(value = "/withdrawn/{userId}")
+    public String displayWithdrawn(@PathVariable Long userId, Model model){
+        Account newAccount = accountRepository.findById(userId).orElse(null);
+
+        model.addAttribute("account", newAccount);
+
+        return "withdrawn";
+    }
+
     @RequestMapping(value = "/modifycomplete/{userId}", method = RequestMethod.POST)
     public String modifyComplete(@PathVariable Long userId, @ModelAttribute Person person, @ModelAttribute Account account){
         Person updatedPerson = personRepository.findById(userId).orElse(null);
@@ -94,7 +115,6 @@ public class UserRegistrationController {
         accountRepository.save(updatedAccount);
 
         return "redirect:/listofpersons";
-        //sem daj redirect
     }
     @RequestMapping(value = "/delete/{userId}", method = RequestMethod.GET)
     public String deleteUser(@PathVariable Long userId){

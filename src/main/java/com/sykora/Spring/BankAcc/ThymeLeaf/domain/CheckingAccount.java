@@ -2,6 +2,7 @@ package com.sykora.Spring.BankAcc.ThymeLeaf.domain;
 
 
 import javax.persistence.Entity;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class CheckingAccount extends Account{
@@ -19,6 +20,12 @@ public class CheckingAccount extends Account{
     }
 
     public CheckingAccount() {
+    }
+
+    public CheckingAccount(Long id, @NotEmpty String accountNumber, @NotEmpty Double balance, String cardNumber, String pin) {
+        super(id, accountNumber, balance);
+        this.cardNumber = cardNumber;
+        this.pin = pin;
     }
 
     public String getCardNumber() {
